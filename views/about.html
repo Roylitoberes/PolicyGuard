@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="PolicyGuard - About Us | Personal Cybersecurity & Risk Management Toolkit">
+  <title>PolicyGuard | About - Our Mission & Team</title>
+  <!-- Bootstrap 5 CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/dropdown.css">
+  
+  <style>
+    /* ========== ABOUT PAGE STYLES ========== */
+    body {
+      background-color: #F5F5F3;
+    }
+
+    .about-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      margin-top: 90px;
+    }
+
+    /* Hero Section */
+    .about-hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .about-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1C1C1C 0%, #4A4F52 50%, #B8AAA3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4A4F52, #1C1C1C);
+      color: #F5F5F3;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Mission Card */
+    .mission-card {
+      background: #FFFFFF;
+      border-radius: 32px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #E8E7E5;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .mission-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.1);
+      border-color: #B8AAA3;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid #E8E7E5;
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: #B8AAA3;
+      box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #4A4F52;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: #8F8A84;
+    }
+
+    /* Feature List */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .feature-item {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 1.2rem;
+      border: 1px solid #E8E7E5;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .feature-item:hover {
+      transform: translateX(8px);
+      border-color: #B8AAA3;
+      background: rgba(184, 170, 163, 0.03);
+    }
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #E8E7E5, #F5F5F3);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #4A4F52;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #B8AAA3, #4A4F52, #B8AAA3);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #4A4F52;
+      border-radius: 50%;
+      border: 2px solid #B8AAA3;
+    }
+    .timeline-year {
+      font-weight: 700;
+      color: #B8AAA3;
+      font-size: 0.8rem;
+    }
+    .timeline-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0.2rem 0;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .team-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid #E8E7E5;
+      transition: all 0.3s;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      border-color: #B8AAA3;
+      box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
+    }
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #4A4F52, #B8AAA3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2.5rem;
+      color: white;
+    }
+    .team-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .team-role {
+      font-size: 0.8rem;
+      color: #B8AAA3;
+      font-weight: 600;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .tech-badge {
+      background: #F8F8F6;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .tech-badge:hover {
+      background: #4A4F52;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary-custom {
+      background: #4A4F52;
+      border: none;
+      border-radius: 60px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      color: white;
+      transition: all 0.2s;
+    }
+    .btn-primary-custom:hover {
+      background: #1C1C1C;
+      transform: translateY(-2px);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 45px;
+      height: 45px;
+      background: #1C1C1C;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+
+    @media (max-width: 768px) {
+      .about-container { padding: 1rem; margin-top: 80px; }
+      .about-hero h1 { font-size: 2rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- YOUR EXISTING NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <div class="container">
+      <a class="navbar-brand" href="home.html"><i class="fas fa-shield-haltered"></i><span>PolicyGuard</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="policyGenDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-file-alt"></i> Policy Gen
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="Smart-policy generator.html"><i class="fas fa-magic"></i> Smart Policy Generator</a></li>
+              <li><a class="dropdown-item" href="ai-advisor.html"><i class="fas fa-robot"></i> AI Security Advisor</a></li>
+              <li><a class="dropdown-item" href="templates.html"><i class="fas fa-file-copy"></i> Policy Templates Library</a></li>
+              <li><a class="dropdown-item" href="risk-integration.html"><i class="fas fa-chart-line"></i> Risk Assessment Integration</a></li>
+              <li><a class="dropdown-item" href="compliance-checker.html"><i class="fas fa-check-double"></i> Compliance & Standards Checker</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="saved-policies.html"><i class="fas fa-bookmark"></i> My Saved Policies</a></li>
+              <li><a class="dropdown-item" href="version-control.html"><i class="fas fa-code-branch"></i> Policy Version Control</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="risk-matrix.html"><i class="fas fa-chart-simple"></i> Risk Matrix</a></li>
+          <li class="nav-item"><a class="nav-link" href="Vault.html"><i class="fas fa-archive"></i> The Vault <span class="badge-new-nav">NEW</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="Playground.html"><i class="fas fa-gavel"></i> Playground </a></li>
+          <li class="nav-item"><a class="nav-link" href="SOC.html"><i class="fas fa-download"></i> SOC </a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+<div class="about-container">
+  
+  <!-- Hero Section -->
+  <div class="about-hero" data-aos="fade-down">
+    <div class="about-badge"><i class="fas fa-info-circle me-2"></i>About PolicyGuard</div>
+    <h1><i class="fas fa-shield-haltered me-3" style="color: #B8AAA3;"></i>Your Digital Security Partner</h1>
+    <p class="lead" style="color: #4A4F52; max-width: 700px; margin: 1rem auto;">Empowering individuals and organizations to take control of their cybersecurity through intelligent, accessible, and comprehensive security tools.</p>
+  </div>
+
+  <!-- Mission Card -->
+  <div class="mission-card" data-aos="fade-up">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="fw-bold mb-3"><i class="fas fa-bullseye me-2" style="color: #B8AAA3;"></i>Our Mission</h2>
+        <p style="font-size: 1rem; line-height: 1.6;">PolicyGuard was created to bridge the gap between complex enterprise security frameworks and everyday users. We believe that cybersecurity should be accessible, understandable, and actionable for everyone — from students and freelancers to small business owners and IT professionals.</p>
+        <p class="mt-3">Our platform combines intelligent assessment tools, real-time threat monitoring, and educational resources to help users identify vulnerabilities, create robust security policies, and maintain compliance with industry standards.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <i class="fas fa-shield-haltered" style="font-size: 4rem; color: #B8AAA3; opacity: 0.7;"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="stats-grid" data-aos="fade-up">
+    <div class="stat-card"><div class="stat-number">8+</div><div class="stat-label">Core Security Modules</div></div>
+    <div class="stat-card"><div class="stat-number">20+</div><div class="stat-label">Interactive Assessments</div></div>
+    <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Threat Monitoring</div></div>
+    <div class="stat-card"><div class="stat-number">ISO/NIST</div><div class="stat-label">Standards Aligned</div></div>
+  </div>
+
+  <!-- Key Features Section -->
+  <h2 class="fw-bold mb-3" data-aos="fade-right"><i class="fas fa-star me-2" style="color: #B8AAA3;"></i>What We Offer</h2>
+  <div class="feature-grid" data-aos="fade-up">
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-magic"></i></div><div><strong>Smart Policy Generator</strong><br><small>Create personalized security policies</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-robot"></i></div><div><strong>AI Security Advisor</strong><br><small>Intelligent security recommendations</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-chart-simple"></i></div><div><strong>Risk Assessment Matrix</strong><br><small>Likelihood × Impact analysis</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-check-double"></i></div><div><strong>Compliance Checker</strong><br><small>GDPR, ISO 27001, NIST alignment</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-bookmark"></i></div><div><strong>Policy Templates Library</strong><br><small>Ready-to-use security templates</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-code-branch"></i></div><div><strong>Version Control</strong><br><small>Track and restore policy versions</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-flask"></i></div><div><strong>CyberLab</strong><br><small>Interactive security experiments</small></div></div>
+    <div class="feature-item"><div class="feature-icon"><i class="fas fa-tv"></i></div><div><strong>SOC Dashboard</strong><br><small>Live threat monitoring simulation</small></div></div>
+  </div>
+
+  <!-- Development Journey Timeline -->
+  <h2 class="fw-bold mb-3 mt-4" data-aos="fade-right"><i class="fas fa-road me-2" style="color: #B8AAA3;"></i>Our Journey</h2>
+  <div class="mission-card" data-aos="fade-up">
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-year">Week 1</div><div class="timeline-title">📋 Project Planning & Requirements</div><div class="small text-muted">Defined core features: Policy Generator, Risk Matrix, Compliance Checker</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 2-3</div><div class="timeline-title">🔧 Core Module Development</div><div class="small text-muted">Built Smart Policy Generator, Risk Assessment Matrix, and Firebase integration</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 4</div><div class="timeline-title">🤖 AI & Educational Features</div><div class="small text-muted">Added AI Security Advisor, Legal Quiz, Compliance Checker with 3 difficulty modes</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 5</div><div class="timeline-title">📚 Content Libraries</div><div class="small text-muted">Created Policy Templates Library, Version Control, Saved Policies system</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 6</div><div class="timeline-title">🎮 Interactive Labs</div><div class="small text-muted">Developed CyberLab experiments and The Vault educational gallery</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 7</div><div class="timeline-title">🏢 Enterprise Features</div><div class="small text-muted">Built SOC Dashboard with real-time threat monitoring and global attack map</div></div>
+      <div class="timeline-item"><div class="timeline-year">Week 8</div><div class="timeline-title">🚀 Final Integration & Deployment</div><div class="small text-muted">Connected all modules, Firebase synchronization, and final testing</div></div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <h2 class="fw-bold mb-3 mt-4" data-aos="fade-right"><i class="fas fa-users me-2" style="color: #B8AAA3;"></i>The Team</h2>
+  <div class="team-grid" data-aos="fade-up">
+    <div class="team-card"><div class="team-avatar"><i class="fas fa-user-shield"></i></div><div class="team-name">Cybersecurity Lead</div><div class="team-role">Security Architecture & Risk Assessment</div></div>
+    <div class="team-card"><div class="team-avatar"><i class="fas fa-code"></i></div><div class="team-name">Development Team</div><div class="team-role">Full-Stack Development & Integration</div></div>
+    <div class="team-card"><div class="team-avatar"><i class="fas fa-robot"></i></div><div class="team-name">AI & Analytics</div><div class="team-role">AI Advisor & Intelligence Systems</div></div>
+    <div class="team-card"><div class="team-avatar"><i class="fas fa-palette"></i></div><div class="team-name">UI/UX Design</div><div class="team-role">User Experience & Interface Design</div></div>
+  </div>
+
+  <!-- Technologies Used -->
+  <h2 class="fw-bold mb-3 mt-4" data-aos="fade-right"><i class="fas fa-microchip me-2" style="color: #B8AAA3;"></i>Technologies</h2>
+  <div class="tech-stack" data-aos="fade-up">
+    <span class="tech-badge"><i class="fab fa-html5 me-1"></i>HTML5</span>
+    <span class="tech-badge"><i class="fab fa-css3-alt me-1"></i>CSS3</span>
+    <span class="tech-badge"><i class="fab fa-js me-1"></i>JavaScript</span>
+    <span class="tech-badge"><i class="fab fa-bootstrap me-1"></i>Bootstrap 5</span>
+    <span class="tech-badge"><i class="fab fa-php me-1"></i>PHP 8.x</span>
+    <span class="tech-badge"><i class="fas fa-database me-1"></i>Firebase</span>
+    <span class="tech-badge"><i class="fas fa-chart-line me-1"></i>Chart.js</span>
+    <span class="tech-badge"><i class="fas fa-shield-alt me-1"></i>MITRE ATT&CK</span>
+    <span class="tech-badge"><i class="fas fa-file-pdf me-1"></i>html2pdf</span>
+    <span class="tech-badge"><i class="fas fa-cloud me-1"></i>Cloud Firestore</span>
+  </div>
+
+  <!-- Standards Alignment -->
+  <div class="mission-card text-center" data-aos="fade-up">
+    <h3 class="fw-bold mb-3">📜 Aligned with Industry Standards</h3>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <span class="tech-badge" style="background: #E8E7E5;"><i class="fab fa-microsoft me-1"></i>ISO/IEC 27001</span>
+      <span class="tech-badge" style="background: #E8E7E5;"><i class="fas fa-shield-alt me-1"></i>ISO/IEC 27002</span>
+      <span class="tech-badge" style="background: #E8E7E5;"><i class="fas fa-chart-line me-1"></i>NIST CSF</span>
+      <span class="tech-badge" style="background: #E8E7E5;"><i class="fas fa-gavel me-1"></i>GDPR</span>
+      <span class="tech-badge" style="background: #E8E7E5;"><i class="fas fa-heartbeat me-1"></i>HIPAA</span>
+    </div>
+    <p class="mt-3 small text-muted">PolicyGuard is designed to help users align with major cybersecurity frameworks and compliance requirements.</p>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="text-center mt-4 p-4" style="background: linear-gradient(135deg, #E8E7E5, #F5F5F3); border-radius: 28px;" data-aos="zoom-in">
+    <h3 class="fw-bold mb-2">Ready to secure your digital world?</h3>
+    <p class="mb-3">Join thousands of users who trust PolicyGuard for their cybersecurity needs.</p>
+    <a href="Smart-policy-generator.html" class="btn btn-primary-custom"><i class="fas fa-magic me-2"></i>Get Started →</a>
+  </div>
+
+  <!-- Footer Note -->
+  <div class="text-center mt-4">
+    <p class="small text-muted">📍 Information Assurance & Security - Final Project<br>© 2025 PolicyGuard | All Rights Reserved</p>
+  </div>
+</div>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  AOS.init({
+    duration: 600,
+    once: true,
+    offset: 50,
+    easing: 'cubic-bezier(0.2, 0.9, 0.4, 1.1)'
+  });
+
+  // Scroll to top
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) scrollBtn.classList.add('visible');
+    else scrollBtn.classList.remove('visible');
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > 20 && navbar) navbar.classList.add('scrolled');
+    else if (navbar) navbar.classList.remove('scrolled');
+  });
+</script>
+</body>
+</html>
