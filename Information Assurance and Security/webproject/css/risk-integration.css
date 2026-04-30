@@ -1,0 +1,224 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #F5F5F3;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      color: #1C1C1C;
+      scroll-behavior: smooth;
+    }
+
+    .ai-advisor-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      margin-top: 100px;
+    }
+
+    .ai-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .ai-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1C1C1C 0%, #4A4F52 50%, #B8AAA3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .integration-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4A4F52, #1C1C1C);
+      color: #F5F5F3;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .advisor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2rem;
+    }
+
+    .advisor-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 32px;
+      padding: 1.8rem;
+      border: 1px solid rgba(184, 170, 163, 0.25);
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+    }
+
+    .advisor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #1C1C1C;
+      border-left: 4px solid #B8AAA3;
+      padding-left: 14px;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label { font-weight: 600; color: #1C1C1C; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+    .form-control { border: 1.5px solid #E8E7E5; border-radius: 20px; padding: 0.75rem 1rem; transition: all 0.2s; background: white; }
+    .form-control:focus { border-color: #B8AAA3; box-shadow: 0 0 0 3px rgba(184, 170, 163, 0.2); outline: none; }
+
+    .strength-meter { margin-top: 0.5rem; height: 8px; background: #E8E7E5; border-radius: 10px; overflow: hidden; }
+    .strength-fill { height: 100%; width: 0%; transition: width 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .strength-weak { background: linear-gradient(90deg, #D32F2F, #EF5350); }
+    .strength-fair { background: linear-gradient(90deg, #F57C00, #FFB74D); }
+    .strength-good { background: linear-gradient(90deg, #FBC02D, #FFD54F); }
+    .strength-strong { background: linear-gradient(90deg, #388E3C, #66BB6A); }
+    .strength-text { font-size: 0.8rem; margin-top: 0.5rem; font-weight: 600; }
+
+    .password-checklist {
+      background: #F9F8F6;
+      border-radius: 24px;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #EFEDEA;
+    }
+    .checklist-title { font-weight: 700; margin-bottom: 0.8rem; font-size: 0.85rem; }
+    .checklist { list-style: none; padding: 0; margin: 0; }
+    .checklist li { font-size: 0.82rem; padding: 0.6rem 0; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #E8E7E5; }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li.valid { color: #2E7D32; }
+    .checklist li.invalid { color: #C62828; }
+    .checklist .requirement-text { flex: 1; }
+    .checklist i { width: 20px; font-size: 1rem; }
+
+    /* BEAUTIFUL SECURITY SCORE CARD */
+    .score-card-beautiful {
+      background: linear-gradient(135deg, #1C1C1C 0%, #2C2C2C 100%);
+      border-radius: 28px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .score-ring {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+    }
+    .score-ring canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .score-ring-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .score-ring-value {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFF, #B8AAA3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+    .score-ring-label {
+      font-size: 0.7rem;
+      color: #B8AAA3;
+      letter-spacing: 1px;
+    }
+    .score-level-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    .level-critical { background: #D32F2F; color: white; box-shadow: 0 0 15px rgba(211,47,47,0.3); }
+    .level-weak { background: #F57C00; color: white; box-shadow: 0 0 15px rgba(245,124,0,0.3); }
+    .level-fair { background: #FBC02D; color: #1C1C1C; box-shadow: 0 0 15px rgba(251,192,45,0.3); }
+    .level-good { background: #4CAF50; color: white; box-shadow: 0 0 15px rgba(76,175,80,0.3); }
+    .level-strong { background: #1B5E20; color: white; box-shadow: 0 0 20px rgba(27,94,32,0.4); }
+
+    .split-row { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.5rem; }
+    .split-col-chart { flex: 1.2; min-width: 200px; }
+    .split-col-tips { flex: 0.9; min-width: 210px; }
+    .chart-card-inline { background: #FEFEFC; border-radius: 26px; padding: 1rem; height: 100%; border: 1px solid #EBE9E6; }
+    .tips-card-inline { background: linear-gradient(145deg, #FEFEFC 0%, #FCFAF8 100%); border-radius: 26px; padding: 1rem; height: 100%; border: 1px solid #EBE9E6; }
+    .tips-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    .tip-modern { display: flex; align-items: center; gap: 12px; background: white; padding: 0.7rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid #F0EDEA; margin-bottom: 0.6rem; transition: all 0.2s; }
+    .tip-modern:hover { transform: translateX(5px); background: #FFF8E7; border-color: #B8AAA3; }
+    .tip-modern i { width: 28px; font-size: 1.1rem; color: #B8AAA3; }
+
+    .chat-messages { height: 350px; overflow-y: auto; padding: 1rem; background: #F8F8F6; border-radius: 24px; margin-bottom: 1rem; }
+    .message { display: flex; gap: 10px; margin-bottom: 1rem; animation: slideIn 0.3s ease; }
+    .message.user { flex-direction: row-reverse; }
+    .message-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .message-avatar.ai { background: linear-gradient(135deg, #4A4F52, #B8AAA3); color: white; }
+    .message-avatar.user { background: #1C1C1C; color: #B8AAA3; }
+    .message-bubble { max-width: 75%; padding: 0.7rem 1rem; border-radius: 22px; font-size: 0.85rem; line-height: 1.45; }
+    .message.ai .message-bubble { background: white; border-bottom-left-radius: 5px; }
+    .message.user .message-bubble { background: #4A4F52; color: white; border-bottom-right-radius: 5px; }
+    .message-time { font-size: 0.65rem; color: #8F8A84; margin-top: 0.2rem; }
+    .chat-input-area { display: flex; gap: 10px; }
+    .chat-input { flex: 1; border: 1.5px solid #E8E7E5; border-radius: 40px; padding: 0.7rem 1rem; outline: none; }
+    .chat-send-btn { width: 44px; height: 44px; background: #4A4F52; border: none; border-radius: 50%; color: white; transition: all 0.2s; }
+    .chat-send-btn:hover { transform: scale(1.05); background: #1C1C1C; }
+    .quick-questions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+    .quick-btn { background: white; border: 1px solid #E8E7E5; border-radius: 40px; padding: 0.4rem 1rem; font-size: 0.7rem; cursor: pointer; transition: all 0.2s; }
+    .quick-btn:hover { background: #B8AAA3; color: white; transform: translateY(-2px); }
+
+    .btn-primary-custom { background: #4A4F52; border: none; border-radius: 60px; padding: 0.8rem 1.5rem; font-weight: 600; color: white; width: 100%; transition: all 0.2s; }
+    .btn-primary-custom:hover { background: #1C1C1C; transform: translateY(-2px); }
+
+    .assessment-item {
+      padding: 0.8rem;
+      border-bottom: 1px solid #E8E7E5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .assessment-item:hover { background: rgba(184, 170, 163, 0.08); border-radius: 16px; }
+    .assessment-info { flex: 1; cursor: pointer; }
+    .delete-assessment-btn { background: transparent; border: none; color: #C62828; font-size: 1rem; cursor: pointer; padding: 5px 10px; border-radius: 40px; transition: all 0.2s; opacity: 0.6; }
+    .delete-assessment-btn:hover { opacity: 1; background: rgba(198, 40, 40, 0.1); transform: scale(1.05); }
+
+    .strength-badge { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 40px; font-size: 0.7rem; font-weight: 700; }
+    .badge-strong { background: #1B5E20; color: white; }
+    .badge-good { background: #4CAF50; color: white; }
+    .badge-fair { background: #FFC107; color: #1C1C1C; }
+    .badge-weak { background: #F57C00; color: white; }
+
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+    .typing-indicator { display: flex; gap: 5px; padding: 0.2rem 0.5rem; }
+    .typing-indicator span { width: 7px; height: 7px; background: #B8AAA3; border-radius: 50%; animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; background: #1C1C1C; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { background: #4A4F52; transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+      .ai-advisor-container { padding: 1rem; margin-top: 80px; }
+      .advisor-grid { grid-template-columns: 1fr; }
+      .split-row { flex-direction: column; }
+    }
+ 

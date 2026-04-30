@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="PolicyGuard - Compliance & Standards Checker | 3 Assessment Modes">
+  <title>PolicyGuard | Compliance & Standards Checker - 3 Modes</title>
+  <!-- Bootstrap 5 CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- html2pdf -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/dropdown.css">
+  <link rel="stylesheet" href="../css/compliance-checker.css">
+ 
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="home.html"><i class="fas fa-shield-haltered"></i><span>PolicyGuard</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="home.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="policyGenDropdown" role="button" data-bs-toggle="dropdown">
+            <i class="fas fa-file-alt"></i> Policy Gen
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="Smart-policy generator.html"><i class="fas fa-magic"></i> Smart Policy Generator</a></li>
+            <li><a class="dropdown-item" href="ai-advisor.html"><i class="fas fa-robot"></i> AI Security Advisor</a></li>
+            <li><a class="dropdown-item" href="templates.html"><i class="fas fa-file-copy"></i> Policy Templates Library</a></li>
+            <li><a class="dropdown-item" href="risk-integration.html"><i class="fas fa-chart-line"></i> Risk Assessment Integration</a></li>
+            <li><a class="dropdown-item" href="compliance-checker.html"><i class="fas fa-check-double"></i> Compliance & Standards Checker</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="saved-policies.html"><i class="fas fa-bookmark"></i> My Saved Policies</a></li>
+            <li><a class="dropdown-item" href="version-control.html"><i class="fas fa-code-branch"></i> Policy Version Control</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="risk-matrix.html"><i class="fas fa-chart-simple"></i> Risk Matrix</a></li>
+        <li class="nav-item"><a class="nav-link" href="Vault.html"><i class="fas fa-tachometer-alt"></i> The Vault <span class="badge-new-nav">NEW</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="Playground.html"><i class="fas fa-gavel"></i> Playground </a></li>
+        <li class="nav-item"><a class="nav-link" href="SOC.html"><i class="fas fa-download"></i> SOC </a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="compliance-container">
+  
+  <div class="compliance-header" data-aos="fade-down">
+    <div class="compliance-badge"><i class="fas fa-layer-group me-2"></i>3 Assessment Modes</div>
+    <h1><i class="fas fa-check-double me-3" style="color: #B8AAA3;"></i>Compliance & Standards Checker</h1>
+    <p>Choose your difficulty level: Beginner, Intermediate, or Advanced. Each mode has 20 questions tailored to your skill level.</p>
+  </div>
+
+  <!-- 3 MODE SELECTION BUTTONS -->
+  <div class="mode-buttons" data-aos="fade-up">
+    <button class="mode-btn" id="modeBeginnerBtn" onclick="switchMode('beginner')">🌱 Beginner Mode</button>
+    <button class="mode-btn" id="modeIntermediateBtn" onclick="switchMode('intermediate')">⚡ Intermediate Mode</button>
+    <button class="mode-btn" id="modeAdvancedBtn" onclick="switchMode('advanced')">🔥 Advanced Mode</button>
+  </div>
+
+  <!-- Score Card -->
+  <div class="score-card-large" data-aos="zoom-in" id="scoreSection">
+    <div class="score-ring">
+      <canvas id="complianceRingCanvas" width="200" height="200"></canvas>
+      <div class="score-ring-center">
+        <div class="score-ring-value" id="complianceScoreValue">0</div>
+        <div style="font-size: 0.7rem;">COMPLIANCE</div>
+      </div>
+    </div>
+    <div><span class="score-status" id="complianceStatusLabel">Select a mode</span></div>
+    <div class="mt-2"><small id="modeDisplay" class="text-muted">Choose Beginner, Intermediate, or Advanced to start</small></div>
+  </div>
+
+  <!-- User Info -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-6"><input type="text" class="form-control" id="userFullName" placeholder="Your Full Name" required></div>
+    <div class="col-md-6"><input type="email" class="form-control" id="userEmail" placeholder="Your Email" required></div>
+  </div>
+
+  <!-- Questions Container (Dynamic based on mode) -->
+  <div id="questionsContainer"></div>
+
+  <!-- Action Buttons - Only Save to Firebase button (now saves to policies collection) -->
+  <div class="row mt-4 g-3" data-aos="fade-up">
+    <div class="col-md-4"><button class="btn-primary-custom w-100" onclick="calculateComplianceScore()"><i class="fas fa-calculator me-2"></i>Calculate Score</button></div>
+    <div class="col-md-4"><button class="btn-primary-custom w-100" onclick="saveToFirebase()"><i class="fas fa-cloud-upload-alt me-2"></i>Save to Firebase</button></div>
+    <div class="col-md-4"><button class="btn-primary-custom w-100" onclick="showReviewModal()"><i class="fas fa-eye me-2"></i>Review Answers</button></div>
+  </div>
+
+  <div class="text-center mt-4">
+    <span class="standard-badge"><i class="fab fa-microsoft me-1"></i>ISO/IEC 27001</span>
+    <span class="standard-badge"><i class="fas fa-shield-alt me-1"></i>ISO/IEC 27002</span>
+    <span class="standard-badge"><i class="fas fa-chart-line me-1"></i>NIST CSF</span>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title"><i class="fas fa-eye me-2"></i>Your Assessment Review</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body" id="reviewModalBody"></div>
+      <div class="modal-footer"><button class="btn btn-primary-custom" data-bs-dismiss="modal">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  AOS.init({ duration: 600, once: true, offset: 50 });
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyB8W2B50xO2oNATLlLfW1Kml3KpNxYr0pU",
+    authDomain: "security-30391.firebaseapp.com",
+    projectId: "security-30391",
+    storageBucket: "security-30391.firebasestorage.app",
+    messagingSenderId: "904775659101",
+    appId: "1:904775659101:web:a4f20ccc04c745228327b4"
+  };
+  let db;
+  try { firebase.initializeApp(firebaseConfig); db = firebase.firestore(); } catch(e) { db = firebase.firestore(); }
+
+  let currentMode = 'beginner';
+  let complianceChart = null;
+
+  // ========== QUESTION DATASETS FOR 3 MODES ==========
+  const questionsDB = {
+    beginner: [
+      { text: "What should you do with a suspicious email asking for your password?", options: ["Report as phishing and delete", "Click the link to verify", "Reply with your password"], correct: "Report as phishing and delete" },
+      { text: "Which is a strong password example?", options: ["password123", "MyName1990", "C0rr3ct-H0rse-B4tt3ry!"], correct: "C0rr3ct-H0rse-B4tt3ry!" },
+      { text: "What is 2FA?", options: ["Two-Factor Authentication", "Two File Access", "Terminal Access"], correct: "Two-Factor Authentication" },
+      { text: "Should you use the same password for multiple accounts?", options: ["Yes, it's easier", "No, it's a security risk", "Only for low-value accounts"], correct: "No, it's a security risk" },
+      { text: "What does antivirus software do?", options: ["Protects against malware", "Speeds up computer", "Backs up files"], correct: "Protects against malware" },
+      { text: "Is it safe to use public WiFi without protection?", options: ["Yes, always", "No, use a VPN", "Only for browsing"], correct: "No, use a VPN" },
+      { text: "What is phishing?", options: ["Fake emails/websites to steal data", "A type of virus", "A backup method"], correct: "Fake emails/websites to steal data" },
+      { text: "How often should you update software?", options: ["Never", "Only when prompted", "Regularly/automatically"], correct: "Regularly/automatically" },
+      { text: "What is a firewall?", options: ["Network security system", "Physical barrier", "Backup device"], correct: "Network security system" },
+      { text: "Should you share your passwords with colleagues?", options: ["Yes, if they ask", "Never", "Only for important accounts"], correct: "Never" },
+      { text: "What is data encryption?", options: ["Scrambling data to protect it", "Deleting data", "Copying data"], correct: "Scrambling data to protect it" },
+      { text: "Why are software updates important?", options: ["Fix security vulnerabilities", "Add features only", "Remove files"], correct: "Fix security vulnerabilities" },
+      { text: "What is a strong password characteristic?", options: ["At least 12 characters, mixed case, numbers, symbols", "Your birthday", "Your name"], correct: "At least 12 characters, mixed case, numbers, symbols" },
+      { text: "What is social engineering?", options: ["Manipulating people to reveal information", "Engineering social media", "Network design"], correct: "Manipulating people to reveal information" },
+      { text: "Should you click links in unexpected emails?", options: ["Yes, always", "No, verify first", "Only from friends"], correct: "No, verify first" },
+      { text: "What is malware?", options: ["Malicious software", "Hardware device", "Network protocol"], correct: "Malicious software" },
+      { text: "What does HTTPS indicate?", options: ["Secure connection", "Slow speed", "Old website"], correct: "Secure connection" },
+      { text: "Should you use a password manager?", options: ["Yes, it stores strong passwords securely", "No, it's unsafe", "Only for business"], correct: "Yes, it stores strong passwords securely" },
+      { text: "What is ransomware?", options: ["Malware that encrypts files for ransom", "Antivirus software", "Backup tool"], correct: "Malware that encrypts files for ransom" },
+      { text: "Describe one way to protect personal data online.", options: ["open-ended"], isOpenEnded: true }
+    ],
+    intermediate: [
+      { text: "What is the most secure form of 2FA?", options: ["SMS codes", "Authenticator app", "Hardware security key", "Email codes"], correct: "Hardware security key" },
+      { text: "What is the '3-2-1' backup rule?", options: ["3 copies, 2 media types, 1 offsite", "3 backups, 2 days, 1 week", "3 devices, 2 locations, 1 cloud"], correct: "3 copies, 2 media types, 1 offsite" },
+      { text: "What is the first step after ransomware infection?", options: ["Pay ransom", "Disconnect from network", "Restart computer", "Run antivirus"], correct: "Disconnect from network" },
+      { text: "What is a brute force attack?", options: ["Trying many password combinations", "Physical break-in", "Email phishing"], correct: "Trying many password combinations" },
+      { text: "What is the purpose of a VPN?", options: ["Encrypt internet traffic", "Speed up connection", "Block ads"], correct: "Encrypt internet traffic" },
+      { text: "What is credential stuffing?", options: ["Using stolen passwords on other sites", "Creating new passwords", "Password hashing"], correct: "Using stolen passwords on other sites" },
+      { text: "What is SQL injection?", options: ["Database attack", "Email virus", "Network flood"], correct: "Database attack" },
+      { text: "What is spear phishing?", options: ["Targeted phishing attack", "Mass email scam", "Phone scam"], correct: "Targeted phishing attack" },
+      { text: "What is the principle of least privilege?", options: ["Minimum access needed", "Maximum access", "Shared access"], correct: "Minimum access needed" },
+      { text: "What is a zero-day vulnerability?", options: ["Unpatched unknown flaw", "Old virus", "Fixed bug"], correct: "Unpatched unknown flaw" },
+      { text: "What is multi-factor authentication?", options: ["Two or more verification methods", "Single password", "Biometric only"], correct: "Two or more verification methods" },
+      { text: "What is a DDoS attack?", options: ["Overwhelming a server with traffic", "Stealing data", "Encrypting files"], correct: "Overwhelming a server with traffic" },
+      { text: "What is the best defense against phishing?", options: ["User awareness training", "Antivirus only", "Firewall only"], correct: "User awareness training" },
+      { text: "What is data classification?", options: ["Categorizing data by sensitivity", "Deleting data", "Copying data"], correct: "Categorizing data by sensitivity" },
+      { text: "What is a SIEM system?", options: ["Security information event management", "Antivirus", "Firewall"], correct: "Security information event management" },
+      { text: "What is the difference between IDS and IPS?", options: ["IDS detects, IPS prevents", "Same thing", "IPS detects, IDS prevents"], correct: "IDS detects, IPS prevents" },
+      { text: "What is a man-in-the-middle attack?", options: ["Intercepting communication", "Password theft", "Malware infection"], correct: "Intercepting communication" },
+      { text: "What is the purpose of security awareness training?", options: ["Educate employees about threats", "Install software", "Backup data"], correct: "Educate employees about threats" },
+      { text: "What is a penetration test?", options: ["Simulated cyberattack to find vulnerabilities", "Virus scan", "Backup test"], correct: "Simulated cyberattack to find vulnerabilities" },
+      { text: "Explain the concept of defense in depth.", options: ["open-ended"], isOpenEnded: true }
+    ],
+    advanced: [
+      { text: "What is the CVSS scoring system used for?", options: ["Vulnerability severity rating", "Password strength", "Network speed"], correct: "Vulnerability severity rating" },
+      { text: "What is a kill chain in cybersecurity?", options: ["Attack lifecycle model", "Malware type", "Encryption method"], correct: "Attack lifecycle model" },
+      { text: "What is the difference between hashing and encryption?", options: ["Hashing is one-way, encryption is two-way", "Same thing", "Encryption is one-way"], correct: "Hashing is one-way, encryption is two-way" },
+      { text: "What is a rainbow table attack?", options: ["Precomputed hash lookup", "Password guessing", "Network sniffing"], correct: "Precomputed hash lookup" },
+      { text: "What is a supply chain attack?", options: ["Attacking through third-party vendors", "Direct network attack", "Physical breach"], correct: "Attacking through third-party vendors" },
+      { text: "What is the MITRE ATT&CK framework?", options: ["Knowledge base of adversary tactics", "Antivirus software", "Firewall rule set"], correct: "Knowledge base of adversary tactics" },
+      { text: "What is a buffer overflow attack?", options: ["Writing data beyond memory boundaries", "Email phishing", "Password theft"], correct: "Writing data beyond memory boundaries" },
+      { text: "What is a side-channel attack?", options: ["Exploiting physical implementation", "Network intrusion", "Malware infection"], correct: "Exploiting physical implementation" },
+      { text: "What is a rootkit?", options: ["Malware hiding deep in system", "Antivirus tool", "Backup software"], correct: "Malware hiding deep in system" },
+      { text: "What is polymorphism in malware?", options: ["Code that changes to avoid detection", "Fast-spreading worm", "File encryptor"], correct: "Code that changes to avoid detection" },
+      { text: "What is a honeypot in security?", options: ["Decoy system to trap attackers", "Password manager", "Firewall rule"], correct: "Decoy system to trap attackers" },
+      { text: "What is the OWASP Top 10?", options: ["Web app security risks", "Network protocols", "Encryption standards"], correct: "Web app security risks" },
+      { text: "What is a business email compromise (BEC)?", options: ["Fraudulent email impersonation", "Virus email", "Spam email"], correct: "Fraudulent email impersonation" },
+      { text: "What is a replay attack?", options: ["Capturing and resending valid data", "Password guessing", "Network flood"], correct: "Capturing and resending valid data" },
+      { text: "What is a cross-site scripting (XSS) attack?", options: ["Injecting malicious scripts into webpages", "Database attack", "Network intrusion"], correct: "Injecting malicious scripts into webpages" },
+      { text: "What is the purpose of a security policy?", options: ["Define security rules and expectations", "Install software", "Backup data"], correct: "Define security rules and expectations" },
+      { text: "What is the difference between authentication and authorization?", options: ["AuthN = identity, AuthZ = permissions", "Same thing", "AuthZ = identity, AuthN = permissions"], correct: "AuthN = identity, AuthZ = permissions" },
+      { text: "What is a security incident response plan?", options: ["Documented steps to handle breaches", "Antivirus schedule", "Backup plan"], correct: "Documented steps to handle breaches" },
+      { text: "What is the concept of zero trust security?", options: ["Never trust, always verify", "Trust everyone", "Trust internal only"], correct: "Never trust, always verify" },
+      { text: "Explain the importance of threat modeling in security design.", options: ["open-ended"], isOpenEnded: true }
+    ]
+  };
+
+  let selectedAnswers = {};
+
+  function renderQuestions(mode) {
+    const container = document.getElementById('questionsContainer');
+    const questions = questionsDB[mode];
+    let html = '';
+    questions.forEach((q, idx) => {
+      const taskId = `q${idx + 1}`;
+      html += `<div class="task-section" data-aos="fade-up">
+        <div class="task-title"><i class="fas fa-question-circle"></i> Question ${idx + 1}</div>
+        <p>${q.text}</p>`;
+      if (!q.isOpenEnded) {
+        html += `<div>`;
+        q.options.forEach(opt => {
+          html += `<button class="option-btn" data-task="${taskId}" data-points="${opt === q.correct ? 10 : 0}" data-correct="${opt === q.correct ? 'true' : 'false'}" onclick="selectAnswer(this, '${taskId}', '${opt.replace(/'/g, "\\'")}', ${opt === q.correct})">${opt}</button>`;
+        });
+        html += `</div>`;
+      } else {
+        html += `<textarea id="${taskId}" rows="3" placeholder="Type your answer here..."></textarea>`;
+      }
+      html += `<div id="${taskId}Feedback" class="mt-2 small text-muted"></div></div>`;
+    });
+    container.innerHTML = html;
+    selectedAnswers = {};
+    document.getElementById('modeDisplay').innerHTML = `Current Mode: ${mode.charAt(0).toUpperCase() + mode.slice(1)} - Answer all 20 questions`;
+  }
+
+  function selectAnswer(btn, taskId, answer, isCorrect) {
+    document.querySelectorAll(`[data-task="${taskId}"]`).forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedAnswers[taskId] = { answer, points: isCorrect ? 10 : 0, isCorrect };
+    const feedbackDiv = document.getElementById(`${taskId}Feedback`);
+    if (isCorrect) feedbackDiv.innerHTML = '✅ Correct! Good job.';
+    else feedbackDiv.innerHTML = '❌ Incorrect. Review the correct answer.';
+  }
+
+  function calculateComplianceScore() {
+    let totalPoints = 0;
+    const questions = questionsDB[currentMode];
+    for (let i = 0; i < questions.length; i++) {
+      const taskId = `q${i + 1}`;
+      if (!questions[i].isOpenEnded) {
+        const selected = document.querySelector(`[data-task="${taskId}"].selected`);
+        if (selected && selected.dataset.correct === 'true') totalPoints += 10;
+      } else {
+        const answer = document.getElementById(taskId)?.value || '';
+        if (answer.length > 30) totalPoints += 10;
+        else if (answer.length > 15) totalPoints += 5;
+        else if (answer.length > 0) totalPoints += 2;
+      }
+    }
+    const percentage = Math.min(100, Math.round((totalPoints / (questions.length * 10)) * 100));
+    updateRingChart(percentage);
+    document.getElementById('complianceScoreValue').innerHTML = percentage;
+    
+    let statusClass, statusText;
+    if (percentage >= 85) { statusClass = 'status-strong'; statusText = 'Strong Compliance'; }
+    else if (percentage >= 60) { statusClass = 'status-good'; statusText = 'Good Compliance'; }
+    else if (percentage >= 40) { statusClass = 'status-moderate'; statusText = 'Moderate Compliance'; }
+    else if (percentage >= 20) { statusClass = 'status-weak'; statusText = 'Weak Compliance'; }
+    else { statusClass = 'status-critical'; statusText = 'Critical Gaps'; }
+    
+    const badge = document.getElementById('complianceStatusLabel');
+    badge.className = `score-status ${statusClass}`;
+    badge.innerText = statusText;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return percentage;
+  }
+
+  // UPDATED: Save to Firebase - Now saves to 'policies' collection (same as Smart Policy Generator)
+  async function saveToFirebase() {
+    const fullName = document.getElementById('userFullName').value;
+    const email = document.getElementById('userEmail').value;
+    if (!fullName || !email) { 
+      alert('Please enter your name and email.'); 
+      return; 
+    }
+    
+    const score = calculateComplianceScore();
+    const questions = questionsDB[currentMode];
+    const answersSummary = {};
+    
+    // Collect all answers in a readable format
+    for (let i = 0; i < questions.length; i++) {
+      const taskId = `q${i + 1}`;
+      if (!questions[i].isOpenEnded) {
+        const selected = document.querySelector(`[data-task="${taskId}"].selected`);
+        answersSummary[`Question ${i+1}`] = selected ? selected.innerText : 'Not answered';
+      } else {
+        answersSummary[`Question ${i+1} (Open-ended)`] = document.getElementById(taskId)?.value || 'Not answered';
+      }
+    }
+    
+    // Get the correct answers for review
+    const correctAnswers = {};
+    for (let i = 0; i < questions.length; i++) {
+      if (!questions[i].isOpenEnded) {
+        correctAnswers[`Question ${i+1}`] = questions[i].correct;
+      } else {
+        correctAnswers[`Question ${i+1}`] = 'Open-ended question - review security best practices';
+      }
+    }
+    
+    const policyData = {
+      fullName: fullName,
+      role: `Compliance Assessment (${currentMode} mode)`,
+      organization: email,
+      date: new Date().toLocaleDateString(),
+      answers: answersSummary,
+      correctAnswers: correctAnswers,
+      securityScore: score,
+      assessmentType: 'compliance',
+      mode: currentMode,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    
+    try {
+      await db.collection('policies').add(policyData);
+      // Show success toast notification
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      toast.innerHTML = `<i class="fas fa-bookmark me-2"></i>Assessment saved to My Policies! Score: ${score}%`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    } catch(error) {
+      alert('❌ Error saving: ' + error.message);
+    }
+  }
+
+  function showReviewModal() {
+    let html = `<h6>Mode: ${currentMode.toUpperCase()} - Your Answers & Correct Explanations:</h6>`;
+    const questions = questionsDB[currentMode];
+    for (let i = 0; i < questions.length; i++) {
+      const taskId = `q${i + 1}`;
+      let userAnswer = 'Not answered';
+      let isCorrect = false;
+      if (!questions[i].isOpenEnded) {
+        const selected = document.querySelector(`[data-task="${taskId}"].selected`);
+        if (selected) { userAnswer = selected.innerText; isCorrect = selected.dataset.correct === 'true'; }
+        html += `<div class="review-answer-${isCorrect ? 'correct' : 'wrong'} mt-2 p-2">
+          <strong>Q${i + 1}:</strong> ${questions[i].text}<br>
+          Your answer: ${userAnswer}<br>
+          <span class="text-muted">✅ Correct answer: ${questions[i].correct}</span>
+        </div>`;
+      } else {
+        userAnswer = document.getElementById(taskId)?.value || 'Not answered';
+        html += `<div class="review-answer-partial mt-2 p-2">
+          <strong>Q${i + 1}:</strong> ${questions[i].text}<br>
+          Your answer: ${userAnswer.substring(0, 150)}${userAnswer.length > 150 ? '...' : ''}<br>
+          <span class="text-muted">💡 Good answer includes specific security practices.</span>
+        </div>`;
+      }
+    }
+    document.getElementById('reviewModalBody').innerHTML = html;
+    new bootstrap.Modal(document.getElementById('reviewModal')).show();
+  }
+
+  function switchMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+    if (mode === 'beginner') document.getElementById('modeBeginnerBtn').classList.add('active');
+    else if (mode === 'intermediate') document.getElementById('modeIntermediateBtn').classList.add('active');
+    else document.getElementById('modeAdvancedBtn').classList.add('active');
+    renderQuestions(mode);
+    updateRingChart(0);
+    document.getElementById('complianceScoreValue').innerHTML = '0';
+    document.getElementById('complianceStatusLabel').innerHTML = 'Not Assessed';
+    document.getElementById('complianceStatusLabel').className = 'score-status';
+  }
+
+  function updateRingChart(score) {
+    const ctx = document.getElementById('complianceRingCanvas').getContext('2d');
+    if (complianceChart) complianceChart.destroy();
+    let color = score >= 80 ? '#1B5E20' : (score >= 60 ? '#4CAF50' : (score >= 40 ? '#FFC107' : (score >= 20 ? '#F57C00' : '#D32F2F')));
+    complianceChart = new Chart(ctx, {
+      type: 'doughnut', data: { datasets: [{ data: [score, 100 - score], backgroundColor: [color, '#3A3A3A'], borderWidth: 0, circumference: 360, rotation: -90 }] },
+      options: { cutout: '70%', responsive: true, maintainAspectRatio: true, plugins: { tooltip: { enabled: false }, legend: { display: false } }, animation: { duration: 800, easing: 'easeOutQuart' } }
+    });
+  }
+
+  // Initialize with Beginner mode
+  switchMode('beginner');
+
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => { if (window.scrollY > 300) scrollBtn.classList.add('visible'); else scrollBtn.classList.remove('visible'); });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
