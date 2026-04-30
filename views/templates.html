@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="PolicyGuard - Policy Templates Library | Ready-Made Cybersecurity Policies">
+  <title>PolicyGuard | Policy Templates Library</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library for Scroll Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- html2pdf for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+   <link rel="stylesheet" href="dropdown.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="templates.css">
+ 
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">
+      <i class="fas fa-shield-haltered"></i> 
+      <span>PolicyGuard</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="policyGenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-file-alt"></i> Policy Gen
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="policyGenDropdown">
+            <li><a class="dropdown-item" href="Smart-policy generator.html"><i class="fas fa-magic"></i> Smart Policy Generator</a></li>
+            <li><a class="dropdown-item" href="ai-advisor.html"><i class="fas fa-robot"></i> AI Security Advisor</a></li>
+            <li><a class="dropdown-item" href="templates.html"><i class="fas fa-file-copy"></i> Policy Templates Library</a></li>
+            <li><a class="dropdown-item" href="risk-integration.html"><i class="fas fa-chart-line"></i> Risk Assessment Integration</a></li>
+            <li><a class="dropdown-item" href="compliance-checker.html"><i class="fas fa-check-double"></i> Compliance & Standards Checker</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="saved-policies.html"><i class="fas fa-bookmark"></i> My Saved Policies</a></li>
+            <li><a class="dropdown-item" href="version-control.html"><i class="fas fa-code-branch"></i> Policy Version Control</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="risk-matrix.html"><i class="fas fa-chart-simple"></i> Risk Matrix</a></li>
+        <li class="nav-item"><a class="nav-link" href="Vault.html"><i class="fas fa-tachometer-alt"></i> The Vault <span class="badge-new-nav">NEW</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="Playground.html"><i class="fas fa-gavel"></i> Playground </a></li>
+        <li class="nav-item"><a class="nav-link" href="SOC.html"><i class="fas fa-download"></i> SOC </a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="templates-container">
+  
+  <!-- Header Section -->
+  <div class="templates-header" data-aos="fade-down" data-aos-duration="800">
+    <div class="templates-badge">
+      <i class="fas fa-file-copy me-2"></i> Ready-Made Templates
+    </div>
+    <h1><i class="fas fa-file-alt me-3" style="color: #B8AAA3;"></i>Policy Templates Library</h1>
+    <p>Select a ready-made cybersecurity policy template that fits your needs. These templates are designed to help you quickly create structured and professional security policies.</p>
+  </div>
+
+  <!-- Templates Grid - 8 Templates -->
+  <div class="templates-grid">
+    <!-- 1. Personal Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="template-icon"><i class="fas fa-user-shield"></i></div>
+      <h3>Personal Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-graduation-cap me-1"></i>Best for: Students & Individual Users</span>
+      <p class="template-description">A simple and easy-to-follow cybersecurity policy focused on protecting personal devices, online accounts, and private information.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Password management guidelines</li>
+        <li><i class="fas fa-check-circle"></i> Safe browsing practices</li>
+        <li><i class="fas fa-check-circle"></i> Social media privacy protection</li>
+        <li><i class="fas fa-check-circle"></i> Basic device security</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('personal')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 2. Freelancer Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="50">
+      <div class="template-icon"><i class="fas fa-briefcase"></i></div>
+      <h3>Freelancer Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-users me-1"></i>Best for: Freelancers handling client data</span>
+      <p class="template-description">A policy designed to ensure the protection of sensitive client information and secure communication practices.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Data confidentiality rules</li>
+        <li><i class="fas fa-check-circle"></i> Secure file sharing methods</li>
+        <li><i class="fas fa-check-circle"></i> Account protection measures</li>
+        <li><i class="fas fa-check-circle"></i> Device and network security</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('freelancer')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 3. Small Business Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="template-icon"><i class="fas fa-building"></i></div>
+      <h3>Small Business Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-chart-line me-1"></i>Best for: Small Business Owners</span>
+      <p class="template-description">A comprehensive policy that helps businesses manage employee access, protect data, and maintain secure operations.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Access control and user roles</li>
+        <li><i class="fas fa-check-circle"></i> Data protection and backup procedures</li>
+        <li><i class="fas fa-check-circle"></i> Incident response plan</li>
+        <li><i class="fas fa-check-circle"></i> Security responsibilities</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('business')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 4. Remote Work Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="150">
+      <div class="template-icon"><i class="fas fa-home"></i></div>
+      <h3>Remote Work Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-laptop-house me-1"></i>Best for: Work-from-home employees</span>
+      <p class="template-description">A policy focused on securing remote work environments and protecting company data outside the office.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Secure WiFi and VPN usage</li>
+        <li><i class="fas fa-check-circle"></i> Device management guidelines</li>
+        <li><i class="fas fa-check-circle"></i> Data handling procedures</li>
+        <li><i class="fas fa-check-circle"></i> Work environment security</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('remote')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 5. Healthcare (HIPAA) Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="template-icon"><i class="fas fa-hospital-user"></i></div>
+      <h3>Healthcare (HIPAA) Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-shield-medical me-1"></i>Best for: Medical professionals & clinics</span>
+      <p class="template-description">HIPAA-compliant policy for protecting patient health information and medical records.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> PHI protection standards</li>
+        <li><i class="fas fa-check-circle"></i> Access controls for medical records</li>
+        <li><i class="fas fa-check-circle"></i> Breach notification procedures</li>
+        <li><i class="fas fa-check-circle"></i> Audit and monitoring requirements</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('hipaa')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 6. E-commerce Security Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="250">
+      <div class="template-icon"><i class="fas fa-shopping-cart"></i></div>
+      <h3>E-commerce Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-credit-card me-1"></i>Best for: Online store owners</span>
+      <p class="template-description">PCI DSS-aligned policy for protecting customer payment data and transaction security.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Payment card data protection</li>
+        <li><i class="fas fa-check-circle"></i> Secure checkout procedures</li>
+        <li><i class="fas fa-check-circle"></i> Fraud prevention measures</li>
+        <li><i class="fas fa-check-circle"></i> Customer data privacy</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('ecommerce')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 7. Educational Institution Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="template-icon"><i class="fas fa-graduation-cap"></i></div>
+      <h3>Educational Institution Policy</h3>
+      <span class="template-badge"><i class="fas fa-school me-1"></i>Best for: Schools & universities</span>
+      <p class="template-description">FERPA-compliant policy for protecting student data and educational records.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Student data protection</li>
+        <li><i class="fas fa-check-circle"></i> Acceptable use policies</li>
+        <li><i class="fas fa-check-circle"></i> Network security for campuses</li>
+        <li><i class="fas fa-check-circle"></i> Parental consent procedures</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('education')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+
+    <!-- 8. Non-Profit Organization Policy -->
+    <div class="template-card" data-aos="fade-up" data-aos-delay="350">
+      <div class="template-icon"><i class="fas fa-heart"></i></div>
+      <h3>Non-Profit Security Policy</h3>
+      <span class="template-badge"><i class="fas fa-hand-holding-heart me-1"></i>Best for: NGOs & charities</span>
+      <p class="template-description">Tailored policy for protecting donor information and organizational data.</p>
+      <ul class="template-features">
+        <li><i class="fas fa-check-circle"></i> Donor data confidentiality</li>
+        <li><i class="fas fa-check-circle"></i> Volunteer access controls</li>
+        <li><i class="fas fa-check-circle"></i> Fundraising security</li>
+        <li><i class="fas fa-check-circle"></i> Incident reporting for sensitive data</li>
+      </ul>
+      <button class="use-template-btn" onclick="showPreview('nonprofit')"><i class="fas fa-eye me-2"></i>Preview Template</button>
+    </div>
+  </div>
+
+  <!-- Template Preview Section - Enhanced -->
+  <div class="preview-section" id="previewSection" data-aos="zoom-in" data-aos-delay="100">
+    <div class="preview-header">
+      <h3><i class="fas fa-eye me-2" style="color: #B8AAA3;"></i>Template Preview</h3>
+      <div class="preview-actions">
+        <button id="copyPreviewBtn" onclick="copyPreview()"><i class="fas fa-copy me-1"></i>Copy</button>
+        <button id="downloadPreviewPDFBtn" onclick="downloadPreviewPDF()"><i class="fas fa-download me-1"></i>Download PDF</button>
+      </div>
+    </div>
+    <div class="preview-content" id="previewContent">
+      <p class="text-muted text-center py-4">Click "Preview Template" on any card above to see the detailed policy structure and content.</p>
+    </div>
+  </div>
+
+  <!-- Customize Option -->
+  <div class="customize-section" data-aos="fade-up" data-aos-delay="150">
+    <i class="fas fa-sliders-h fa-2x" style="color: #B8AAA3; margin-bottom: 1rem; display: inline-block;"></i>
+    <h3>⚙️ Customize Your Template</h3>
+    <p>After selecting a template, you can customize it using the Smart Policy Generator to match your specific needs and security practices.</p>
+    <button class="customize-btn" onclick="window.location.href='Smart-policy generator.html'"><i class="fas fa-magic me-2"></i>Go to Smart Policy Generator</button>
+  </div>
+
+  <!-- Smart Recommendation -->
+  <div class="recommendation-card" data-aos="fade-left" data-aos-delay="200">
+    <div class="recommendation-icon">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div class="recommendation-content">
+      <h4>💡 Smart Recommendation</h4>
+      <p>Not sure which template to choose? Based on your role and needs, the system recommends the <strong id="recTemplate">Personal Security Policy</strong> template to get started with basic protection.</p>
+    </div>
+    <button class="rec-btn" onclick="showRecommended()"><i class="fas fa-star me-2"></i>View Recommended</button>
+  </div>
+
+  <!-- Closing Message -->
+  <div class="text-center mt-4 py-4" data-aos="fade-up" data-aos-delay="250">
+    <i class="fas fa-check-circle fa-2x" style="color: #2E7D32; margin-bottom: 0.5rem;"></i>
+    <p class="text-secondary">These templates are designed to simplify cybersecurity policy creation while ensuring that all essential security practices are included.</p>
+    <hr style="width: 100px; margin: 1rem auto; background: #B8AAA3;">
+    <small class="text-muted">PolicyGuard • Professional Security Templates Library</small>
+  </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTopBtn">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Initialize AOS for scroll animations
+  AOS.init({
+    duration: 600,
+    once: true,
+    offset: 100,
+    easing: 'ease-out-cubic'
+  });
+
+  // Template Preview Data - 8 Detailed Templates
+  const templatePreviews = {
+    personal: {
+      title: 'Personal Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - PERSONAL USE</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Personal</p>
+<p><strong>Purpose:</strong> This policy provides comprehensive guidelines for protecting personal devices, online accounts, and private information against cyber threats.</p>
+
+<h4>1. PASSWORD MANAGEMENT</h4>
+<ul><li>Use unique, strong passwords for every account (minimum 12-16 characters)</li><li>Include uppercase letters, lowercase letters, numbers, and special symbols</li><li>Enable Two-Factor Authentication (2FA) on all accounts that support it</li><li>Use a reputable password manager (Bitwarden, 1Password, Apple Keychain)</li><li>Never share passwords via email, text, or phone call</li><li>Change passwords immediately if a data breach is suspected</li></ul>
+
+<h4>2. SAFE BROWSING PRACTICES</h4>
+<ul><li>Verify website URLs before entering credentials (look for HTTPS and padlock icon)</li><li>Never click suspicious links or download unknown attachments</li><li>Use ad-blockers and anti-tracking browser extensions</li><li>Regularly clear browsing history, cache, and cookies</li><li>Use private/incognito mode for sensitive browsing</li></ul>
+
+<h4>3. SOCIAL MEDIA PRIVACY</h4>
+<ul><li>Review and tighten privacy settings on all social media platforms monthly</li><li>Never post personal information publicly (address, phone number, birth date)</li><li>Do not share vacation plans or real-time locations</li><li>Be cautious of friend requests from unknown persons</li><li>Regularly review connected third-party apps and remove unused ones</li></ul>
+
+<h4>4. DEVICE SECURITY</h4>
+<ul><li>Keep operating system and all applications updated with latest security patches</li><li>Install and maintain reputable antivirus/anti-malware software</li><li>Enable built-in firewall protection</li><li>Use full-disk encryption (BitLocker for Windows, FileVault for Mac)</li><li>Lock screen when device is unattended</li></ul>
+
+<h4>5. RESPONSIBILITIES</h4>
+<p>As a personal user, you are responsible for implementing these security measures and reviewing this policy quarterly. Report any security incidents immediately.</p>
+<p><em>Generated by PolicyGuard - Personal Security Template</em></p>`
+    },
+    freelancer: {
+      title: 'Freelancer Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - FREELANCER</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Professional</p>
+<p><strong>Purpose:</strong> This policy ensures the protection of sensitive client information and secure communication practices for independent professionals.</p>
+
+<h4>1. DATA CONFIDENTIALITY</h4>
+<ul><li>Client data must never be shared with third parties without explicit consent</li><li>Use encrypted storage solutions for all sensitive files</li><li>Securely delete client data 30 days after project completion</li><li>Sign NDAs with clients when required</li></ul>
+
+<h4>2. SECURE FILE SHARING</h4>
+<ul><li>Use encrypted file sharing services (Tresorit, ProtonDrive, Sync.com)</li><li>Password-protect all sensitive shared documents</li><li>Use expiration dates for all shared links (maximum 30 days)</li><li>Never send passwords or sensitive data via unencrypted email</li></ul>
+
+<h4>3. ACCOUNT PROTECTION</h4>
+<ul><li>Use separate, unique accounts for each client or project</li><li>Enable 2FA on all work-related accounts and platforms</li><li>Use a password manager for all credentials</li><li>Regularly audit active sessions and remove unknown devices</li></ul>
+
+<h4>4. DEVICE & NETWORK SECURITY</h4>
+<ul><li>Always use VPN when connecting to public or client networks</li><li>Enable full-disk encryption on all work devices</li><li>Perform weekly security scans and updates</li><li>Use separate work devices when possible</li></ul>
+
+<h4>5. INCIDENT RESPONSE</h4>
+<ul><li>Document and report any security incidents to affected clients within 24 hours</li><li>Have a breach notification template ready</li><li>Maintain offline backups of critical data</li></ul>
+
+<p><em>Generated by PolicyGuard - Freelancer Security Template</em></p>`
+    },
+    business: {
+      title: 'Small Business Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - SMALL BUSINESS</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Confidential</p>
+<p><strong>Purpose:</strong> This policy helps businesses manage employee access, protect sensitive data, and maintain secure operations.</p>
+
+<h4>1. ACCESS CONTROL</h4>
+<ul><li>Implement role-based access control (RBAC) for all systems</li><li>Conduct quarterly access reviews and audits</li><li>Apply least privilege principle - minimum access needed</li><li>Immediately revoke access for terminated employees</li></ul>
+
+<h4>2. DATA PROTECTION</h4>
+<ul><li>Perform automated daily backups (3-2-1 rule: 3 copies, 2 media, 1 offsite)</li><li>Classify data into sensitivity levels (Public, Internal, Confidential, Restricted)</li><li>Encrypt all data at rest and in transit</li><li>Use DLP (Data Loss Prevention) tools for sensitive data</li></ul>
+
+<h4>3. INCIDENT RESPONSE PLAN</h4>
+<ul><li>Designate incident response team members and roles</li><li>Document step-by-step response procedures</li><li>Conduct quarterly incident response drills</li><li>Perform post-incident analysis and implement improvements</li></ul>
+
+<h4>4. EMPLOYEE RESPONSIBILITIES</h4>
+<ul><li>Complete annual security awareness training</li><li>Report suspicious activities immediately to IT</li><li>Follow acceptable use policy at all times</li><li>Use company-approved tools only</li></ul>
+
+<h4>5. COMPLIANCE MONITORING</h4>
+<ul><li>Conduct regular security audits</li><li>Maintain compliance with relevant regulations</li><li>Document all security incidents and responses</li></ul>
+
+<p><em>Generated by PolicyGuard - Small Business Security Template</em></p>`
+    },
+    remote: {
+      title: 'Remote Work Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - REMOTE WORK</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Company Confidential</p>
+<p><strong>Purpose:</strong> This policy secures remote work environments and protects company data outside the traditional office.</p>
+
+<h4>1. NETWORK SECURITY</h4>
+<ul><li>Use company-approved VPN for all business connections</li><li>Secure home WiFi with WPA3 encryption and strong password</li><li>Disable network sharing and guest networks when not needed</li><li>Change default router administrator credentials</li></ul>
+
+<h4>2. DEVICE MANAGEMENT</h4>
+<ul><li>Keep all devices updated with latest security patches (automated updates)</li><li>Enable full-disk encryption on all work devices</li><li>Install and maintain endpoint protection software</li><li>Use company-issued devices when possible; if personal, enforce security baselines</li></ul>
+
+<h4>3. DATA HANDLING</h4>
+<ul><li>Store work data only on approved cloud platforms with 2FA</li><li>Never store sensitive company data on personal devices or unencrypted USBs</li><li>Use secure file sharing with access controls</li><li>Print sensitive documents only when necessary and shred after use</li></ul>
+
+<h4>4. WORK ENVIRONMENT</h4>
+<ul><li>Lock screen when away from desk (Windows+L or Ctrl+Cmd+Q)</li><li>Use privacy screen filters in public spaces</li><li>Secure physical documents and devices in locked drawers</li><li>Be aware of shoulder surfing in public areas</li></ul>
+
+<h4>5. VIDEO CONFERENCE SECURITY</h4>
+<ul><li>Use meeting passwords and waiting rooms</li><li>Do not share meeting links publicly</li><li>Keep software updated to latest versions</li></ul>
+
+<p><em>Generated by PolicyGuard - Remote Work Security Template</em></p>`
+    },
+    hipaa: {
+      title: 'Healthcare (HIPAA) Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - HEALTHCARE (HIPAA COMPLIANT)</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> PHI - Restricted</p>
+<p><strong>Purpose:</strong> This HIPAA-compliant policy ensures the confidentiality, integrity, and availability of protected health information (PHI).</p>
+
+<h4>1. PHI PROTECTION STANDARDS</h4>
+<ul><li>Implement administrative, physical, and technical safeguards for PHI</li><li>Encrypt all electronic PHI at rest and in transit</li><li>Maintain audit logs of all PHI access and disclosures</li><li>Implement automatic logout after 5 minutes of inactivity</li></ul>
+
+<h4>2. ACCESS CONTROLS</h4>
+<ul><li>Unique user identification for all workforce members</li><li>Role-based access to minimum necessary PHI</li><li>Emergency access procedures for disaster situations</li><li>Regular access reviews and termination procedures</li></ul>
+
+<h4>3. BREACH NOTIFICATION</h4>
+<ul><li>Notify affected individuals within 60 days of breach discovery</li><li>Report breaches affecting 500+ individuals to HHS within 60 days</li><li>Report smaller breaches annually to HHS</li><li>Document all breach risk assessments</li></ul>
+
+<h4>4. AUDIT & MONITORING</h4>
+<ul><li>Implement hardware/software to monitor system activity</li><li>Regular review of audit logs for suspicious activity</li><li>Annual security risk assessment</li><li>Document all security incidents and responses</li></ul>
+
+<h4>5. BUSINESS ASSOCIATE MANAGEMENT</h4>
+<ul><li>Execute Business Associate Agreements with all vendors handling PHI</li><li>Verify BA compliance with HIPAA standards</li><li>Terminate BA agreements for non-compliance</li></ul>
+
+<p><em>Generated by PolicyGuard - HIPAA Security Template</em></p>`
+    },
+    ecommerce: {
+      title: 'E-commerce Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - E-COMMERCE</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> PCI Confidential</p>
+<p><strong>Purpose:</strong> This PCI DSS-aligned policy protects customer payment data and ensures secure transaction processing.</p>
+
+<h4>1. PAYMENT CARD DATA PROTECTION</h4>
+<ul><li>Never store full magnetic stripe, CVV2, or PIN data</li><li>Tokenize or encrypt all stored cardholder data</li><li>Use PCI-compliant payment gateways</li><li>Regularly scan for vulnerabilities</li></ul>
+
+<h4>2. SECURE CHECKOUT PROCEDURES</h4>
+<ul><li>Implement TLS 1.2+ for all checkout pages</li><li>Display security seals and trust badges prominently</li><li>Provide clear privacy policy and terms</li><li>Offer guest checkout to avoid storing payment data</li></ul>
+
+<h4>3. FRAUD PREVENTION</h4>
+<ul><li>Implement AVS and CVV verification</li><li>Use 3D Secure authentication</li><li>Monitor for unusual transaction patterns</li><li>Maintain chargeback response procedures</li></ul>
+
+<h4>4. CUSTOMER DATA PRIVACY</h4>
+<ul><li>Collect only necessary customer information</li><li>Provide clear opt-out options for marketing</li><li>Implement data retention and deletion policies</li><li>Honor data access and deletion requests</li></ul>
+
+<h4>5. PCI COMPLIANCE</h4>
+<ul><li>Complete annual SAQ (Self-Assessment Questionnaire)</li><li>Conduct quarterly network scans</li><li>Maintain PCI compliance certification</li></ul>
+
+<p><em>Generated by PolicyGuard - E-commerce Security Template</em></p>`
+    },
+    education: {
+      title: 'Educational Institution Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - EDUCATIONAL INSTITUTION</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Student Confidential</p>
+<p><strong>Purpose:</strong> This FERPA-compliant policy protects student education records and ensures a safe digital learning environment.</p>
+
+<h4>1. STUDENT DATA PROTECTION</h4>
+<ul><li>Limit access to education records to authorized personnel only</li><li>Encrypt all student data at rest and in transit</li><li>Maintain records of all data access</li><li>Dispose of records securely when no longer needed</li></ul>
+
+<h4>2. ACCEPTABLE USE POLICY</h4>
+<ul><li>Define prohibited activities on school networks</li><li>Implement content filtering for inappropriate material</li><li>Monitor network usage for policy violations</li><li>Establish consequences for violations</li></ul>
+
+<h4>3. NETWORK SECURITY</h4>
+<ul><li>Segregate student, staff, and guest networks</li><li>Implement web filtering and threat protection</li><li>Conduct regular security assessments</li><li>Maintain incident response procedures</li></ul>
+
+<h4>4. PARENTAL CONSENT</h4>
+<ul><li>Obtain parental consent for data collection under 13 (COPPA)</li><li>Provide clear privacy notices to parents</li><li>Allow parents to review and request deletion of student data</li></ul>
+
+<h4>5. DATA BREACH RESPONSE</h4>
+<ul><li>Notify affected families within 60 days of breach discovery</li><li>Document breach investigation and remediation</li><li>Review and update security measures annually</li></ul>
+
+<p><em>Generated by PolicyGuard - Educational Security Template</em></p>`
+    },
+    nonprofit: {
+      title: 'Non-Profit Security Policy',
+      content: `<h4>INFORMATION SECURITY POLICY - NON-PROFIT ORGANIZATION</h4>
+<p><strong>Version:</strong> 2.0 | <strong>Effective Date:</strong> Current | <strong>Classification:</strong> Donor Confidential</p>
+<p><strong>Purpose:</strong> This policy protects donor information, volunteer data, and organizational assets for non-profit organizations.</p>
+
+<h4>1. DONOR DATA CONFIDENTIALITY</h4>
+<ul><li>Never share donor personal information without explicit consent</li><li>Encrypt all donor databases and records</li><li>Respect donor opt-out requests</li><li>Securely dispose of outdated donor records</li></ul>
+
+<h4>2. VOLUNTEER ACCESS CONTROLS</h4>
+<ul><li>Provide minimum necessary access for volunteers</li><li>Conduct background checks for sensitive roles</li><li>Review volunteer access quarterly</li><li>Revoke access immediately upon volunteer departure</li></ul>
+
+<h4>3. FUNDRAISING SECURITY</h4>
+<ul><li>Use PCI-compliant donation processing platforms</li><li>Display security seals on donation pages</li><li>Never store credit card information without PCI compliance</li><li>Provide secure receipting and record keeping</li></ul>
+
+<h4>4. SENSITIVE DATA HANDLING</h4>
+<ul><li>Classify data by sensitivity level</li><li>Train staff on proper data handling</li><li>Report any suspected data breaches immediately</li><li>Maintain data breach response plan</li></ul>
+
+<h4>5. THIRD-PARTY VENDORS</h4>
+<ul><li>Vet all vendors for security practices</li><li>Sign data protection agreements</li><li>Regularly review vendor compliance</li></ul>
+
+<p><em>Generated by PolicyGuard - Non-Profit Security Template</em></p>`
+    }
+  };
+
+  let currentPreview = null;
+
+  function showPreview(templateType) {
+    const preview = templatePreviews[templateType];
+    if (preview) {
+      currentPreview = preview;
+      document.getElementById('previewContent').innerHTML = preview.content;
+      document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Animate preview section
+      const previewSection = document.getElementById('previewSection');
+      previewSection.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        previewSection.style.transform = 'scale(1)';
+      }, 150);
+      
+      // Update recommendation text
+      document.getElementById('recTemplate').innerText = preview.title;
+    }
+  }
+
+  function showRecommended() {
+    const recTemplate = document.getElementById('recTemplate').innerText;
+    for (const [key, value] of Object.entries(templatePreviews)) {
+      if (value.title === recTemplate) {
+        showPreview(key);
+        break;
+      }
+    }
+  }
+
+  function copyPreview() {
+    if (currentPreview) {
+      const textContent = document.getElementById('previewContent').innerText;
+      navigator.clipboard.writeText(textContent).then(() => {
+        const btn = document.getElementById('copyPreviewBtn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+      });
+    } else {
+      alert('Please preview a template first by clicking "Preview Template" on any card.');
+    }
+  }
+
+  function downloadPreviewPDF() {
+    if (currentPreview) {
+      const element = document.createElement('div');
+      element.innerHTML = `<div style="padding: 30px; font-family: 'Inter', sans-serif; background: white;">
+        <h1 style="color: #1C1C1C;">${currentPreview.title}</h1>
+        <hr style="border-color: #B8AAA3;">
+        <div>${currentPreview.content}</div>
+        <hr>
+        <p style="color: #4A4F52; font-size: 12px;">Generated by PolicyGuard - Policy Templates Library</p>
+      </div>`;
+      html2pdf().from(element).set({
+        margin: 0.5,
+        filename: `${currentPreview.title.replace(/\s/g, '_')}.pdf`,
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      }).save();
+    } else {
+      alert('Please preview a template first.');
+    }
+  }
+
+  // Scroll to Top
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) scrollBtn.classList.add('visible');
+    else scrollBtn.classList.remove('visible');
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > 20 && navbar) navbar.classList.add('scrolled');
+    else if (navbar) navbar.classList.remove('scrolled');
+  });
+</script>
+</body>
+</html>

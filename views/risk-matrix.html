@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>PolicyGuard | Risk Assessment Matrix</title>
+  <!-- Bootstrap 5 CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="dropdown.css">
+  <link rel="stylesheet" href="risk-matrix.css">
+</head>
+<body>
+
+< <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">
+      <i class="fas fa-shield-haltered"></i> 
+      <span>PolicyGuard</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        
+        <!-- Policy Gen DROPDOWN MENU -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="policyGenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-file-alt"></i> Policy Gen
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="policyGenDropdown">
+            <li><a class="dropdown-item" href="Smart-policy generator.html"><i class="fas fa-magic"></i> Smart Policy Generator</a></li>
+            <li><a class="dropdown-item" href="ai-advisor.html"><i class="fas fa-robot"></i> AI Security Advisor</a></li>
+            <li><a class="dropdown-item" href="templates.html"><i class="fas fa-file-copy"></i> Policy Templates Library</a></li>
+            <li><a class="dropdown-item" href="risk-integration.html"><i class="fas fa-chart-line"></i> Risk Assessment Integration</a></li>
+            <li><a class="dropdown-item" href="compliance-checker.html"><i class="fas fa-check-double"></i> Compliance & Standards Checker</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="saved-policies.html"><i class="fas fa-bookmark"></i> My Saved Policies</a></li>
+            <li><a class="dropdown-item" href="version-control.html"><i class="fas fa-code-branch"></i> Policy Version Control</a></li>
+          </ul>
+        </li>
+        
+        <li class="nav-item"><a class="nav-link" href="risk-matrix.html"><i class="fas fa-chart-simple"></i> Risk Matrix</a></li>
+        <li class="nav-item"><a class="nav-link" href="Vault.html"><i class="fas fa-tachometer-alt"></i> The Vault <span class="badge-new-nav">NEW</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="Playground.html"><i class="fas fa-gavel"></i> Playground </a></li>
+        <li class="nav-item"><a class="nav-link" href="SOC.html"><i class="fas fa-download"></i> SOC </a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="risk-container">
+  <div class="risk-header">
+    <div class="risk-badge"><i class="fas fa-chart-line me-2"></i>Risk Assessment Tool</div>
+    <h1><i class="fas fa-chart-simple me-3" style="color: #B8AAA3;"></i>Risk Assessment Matrix</h1>
+    <p>Click any asset and enter your REAL information. The system will calculate your risk based on what type of data you store!</p>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-stats">
+      <div class="stat-item"><div class="stat-number" id="totalAssets">6</div><div class="stat-label">Assets Assessed</div></div>
+      <div class="stat-item"><div class="stat-number critical" id="criticalCount">0</div><div class="stat-label">Critical</div></div>
+      <div class="stat-item"><div class="stat-number high" id="highCount">0</div><div class="stat-label">High</div></div>
+      <div class="stat-item"><div class="stat-number medium" id="mediumCount">0</div><div class="stat-label">Medium</div></div>
+      <div class="stat-item"><div class="stat-number low" id="lowCount">0</div><div class="stat-label">Low</div></div>
+    </div>
+    <div class="priority-action" id="priorityAction"><i class="fas fa-exclamation-triangle me-2"></i> Click an asset to assess your data risk</div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-5">
+      <div class="summary-card" style="padding: 1.5rem;">
+        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Digital Assets</h4>
+        <div class="asset-badges" id="assetBadges">
+          <div class="asset-badge" data-asset="Employee Credentials"><i class="fas fa-id-card"></i>Employee Credentials</div>
+          <div class="asset-badge" data-asset="Customer Database"><i class="fas fa-database"></i>Customer Database</div>
+          <div class="asset-badge" data-asset="Financial Records"><i class="fas fa-coins"></i>Financial Records</div>
+          <div class="asset-badge" data-asset="Backup Server"><i class="fas fa-server"></i>Backup Server</div>
+          <div class="asset-badge" data-asset="Email Accounts"><i class="fas fa-envelope"></i>Email Accounts</div>
+          <div class="asset-badge" data-asset="Mobile Devices"><i class="fas fa-mobile-alt"></i>Mobile Devices</div>
+        </div>
+        <div class="slider-container">
+          <div class="slider-label"><span>Likelihood (Auto-calculated)</span><span class="slider-value" id="likelihoodValue">1</span></div>
+          <input type="range" id="likelihoodSlider" min="1" max="5" value="1" step="1" disabled>
+          <div class="d-flex justify-content-between text-muted small mt-1"><span>Rare</span><span>Unlikely</span><span>Possible</span><span>Likely</span><span>Almost Certain</span></div>
+        </div>
+        <div class="slider-container">
+          <div class="slider-label"><span>Impact (Auto-calculated)</span><span class="slider-value" id="impactValue">1</span></div>
+          <input type="range" id="impactSlider" min="1" max="5" value="1" step="1" disabled>
+          <div class="d-flex justify-content-between text-muted small mt-1"><span>Minor</span><span>Moderate</span><span>Significant</span><span>Severe</span><span>Disaster</span></div>
+        </div>
+        <div class="alert alert-info text-center small mt-2 mb-0"><i class="fas fa-info-circle me-1"></i> Storing sensitive data (passwords, payment info) increases your risk score!</div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="summary-card" style="padding: 1.5rem;">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="gauge-container">
+              <canvas id="riskGauge" width="180" height="180"></canvas>
+              <div class="gauge-center"><div class="gauge-score" id="riskScoreValue">0</div><div class="stat-label">Risk Score</div></div>
+            </div>
+            <div class="mt-2 text-center"><span class="badge" id="riskLevelBadge" style="background:#8F8A84; padding:0.5rem 1rem;">Not Assessed</span></div>
+          </div>
+          <div class="col-md-7">
+            <h5><i class="fas fa-lightbulb me-2"></i>Recommendation</h5>
+            <div id="recommendationText" style="font-size:0.85rem;">Click an asset and enter your data to assess risk</div>
+            <div class="mt-3"><i class="fas fa-download me-1"></i> <a href="#" id="exportReportBtn" style="color:#4A4F52;">Export Risk Report →</a></div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-color" style="background:#A5D6A7;"></div><span>Low (1-6)</span></div>
+          <div class="legend-item"><div class="legend-color" style="background:#FFCC80;"></div><span>Medium (7-12)</span></div>
+          <div class="legend-item"><div class="legend-color" style="background:#FFAB91;"></div><span>High (13-18)</span></div>
+          <div class="legend-item"><div class="legend-color" style="background:#EF9A9A;"></div><span>Critical (19-25)</span></div>
+        </div>
+        <div class="matrix-visual"><h6 class="mb-2 text-center">Risk Matrix (Likelihood × Impact)</h6><div class="matrix-grid" id="matrixGrid"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-matters">
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <i class="fas fa-graduation-cap fa-2x" style="color:#B8AAA3;"></i>
+      <div><h5 class="mb-1">📌 Why This Matters</h5><p class="mb-0 small">The system analyzes the TYPE of data you enter. Passwords, Payment Info, and Credentials = HIGH RISK. Basic info like names = LOW RISK. The more sensitive data you store, the higher your risk score!</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Assessment Modal -->
+<div class="modal fade" id="assetModal" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-shield-alt me-2"></i>Data Risk Assessment: <span id="assetNameDisplay">Loading...</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <div id="assessmentQuestions"></div>
+        <div class="alert alert-info mt-3 small">
+          <i class="fas fa-info-circle me-1"></i> <strong>How risk is calculated:</strong> Passwords, Payment Info, Credentials = 🔴 High Risk | Personal Info = 🟡 Medium Risk | Basic Info = 🟢 Low Risk
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary-custom" id="submitAssessmentBtn">Calculate Risk Score</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let assets = [
+    { name: "Employee Credentials", likelihood: 1, impact: 1, risk: 1, riskScore: 0 },
+    { name: "Customer Database", likelihood: 1, impact: 1, risk: 1, riskScore: 0 },
+    { name: "Financial Records", likelihood: 1, impact: 1, risk: 1, riskScore: 0 },
+    { name: "Backup Server", likelihood: 1, impact: 1, risk: 1, riskScore: 0 },
+    { name: "Email Accounts", likelihood: 1, impact: 1, risk: 1, riskScore: 0 },
+    { name: "Mobile Devices", likelihood: 1, impact: 1, risk: 1, riskScore: 0 }
+  ];
+
+  let riskChart = null;
+
+  const assetData = {
+    "Employee Credentials": [
+      { name: "Username", sensitivity: "low" },
+      { name: "Password", sensitivity: "high" },
+      { name: "PIN Codes", sensitivity: "high" },
+      { name: "Security Questions", sensitivity: "medium" },
+      { name: "OTP", sensitivity: "high" },
+      { name: "Biometric Data", sensitivity: "high" },
+      { name: "Access Roles", sensitivity: "medium" }
+    ],
+    "Customer Database": [
+      { name: "Customer Names", sensitivity: "low" },
+      { name: "Contact Info", sensitivity: "medium" },
+      { name: "Addresses", sensitivity: "medium" },
+      { name: "Purchase History", sensitivity: "medium" },
+      { name: "Payment Info", sensitivity: "high" }
+    ],
+    "Financial Records": [
+      { name: "Transactions", sensitivity: "high" },
+      { name: "Bank Details", sensitivity: "high" },
+      { name: "Invoices", sensitivity: "medium" },
+      { name: "Payroll", sensitivity: "high" },
+      { name: "Tax Records", sensitivity: "high" }
+    ],
+    "Backup Server": [
+      { name: "Backup Files", sensitivity: "medium" },
+      { name: "System Snapshots", sensitivity: "medium" },
+      { name: "Recovery Data", sensitivity: "high" },
+      { name: "Database Backups", sensitivity: "high" }
+    ],
+    "Email Accounts": [
+      { name: "Emails", sensitivity: "medium" },
+      { name: "Attachments", sensitivity: "medium" },
+      { name: "Contacts", sensitivity: "low" },
+      { name: "Credentials", sensitivity: "high" }
+    ],
+    "Mobile Devices": [
+      { name: "Apps", sensitivity: "low" },
+      { name: "Files", sensitivity: "medium" },
+      { name: "Passwords", sensitivity: "high" },
+      { name: "Biometric Access", sensitivity: "high" },
+      { name: "Location Data", sensitivity: "medium" }
+    ]
+  };
+
+  const suggestionData = {
+    "Username": ["john.doe", "jane_smith", "admin_user", "it_manager"],
+    "Password": ["P@ssw0rd2024", "SecurePass123!", "Admin@2024", "Welcome#2024"],
+    "PIN Codes": ["1234", "5678", "0000", "1111"],
+    "Security Questions": ["Mother's maiden name: Smith", "First pet: Max", "Birth city: Manila"],
+    "OTP": ["123456", "789012", "345678", "901234"],
+    "Biometric Data": ["Fingerprint_John", "FaceID_Admin", "Fingerprint_Mary"],
+    "Access Roles": ["Admin", "Manager", "Staff", "Supervisor"],
+    "Customer Names": ["Juan Dela Cruz", "Maria Santos", "John Smith"],
+    "Contact Info": ["juan@email.com", "09123456789", "maria@company.com"],
+    "Addresses": ["123 Main St, Manila", "456 Oak Ave, Cebu"],
+    "Purchase History": ["Laptop - $1200", "Phone - $800", "Tablet - $500"],
+    "Payment Info": ["VISA ****1234", "Mastercard ****5678", "PayPal: user@email.com"],
+    "Transactions": ["₱10,000 - Date: 2024-01-15", "₱5,000 - Date: 2024-02-20"],
+    "Bank Details": ["BPI Account: 1234-5678-90", "BDO Account: 9876-5432-10"],
+    "Invoices": ["INV-2024-001", "INV-2024-002", "INV-2024-003"],
+    "Payroll": ["Salary: ₱50,000", "Bonus: ₱10,000"],
+    "Tax Records": ["TIN: 123-456-789", "BIR Form 2316"],
+    "Backup Files": ["database_backup_2024.zip", "system_backup_032024.tar"],
+    "System Snapshots": ["snapshot_2024_01_01", "snapshot_2024_02_01"],
+    "Recovery Data": ["recovery_key_2024.txt", "master_recovery.dat"],
+    "Database Backups": ["customer_db_backup.sql", "financial_db_backup.sql"],
+    "Emails": ["Welcome email", "Password reset request", "Meeting invitation"],
+    "Attachments": ["report.pdf", "invoice_2024.docx", "presentation.pptx"],
+    "Contacts": ["John: 09123456789", "Maria: maria@email.com"],
+    "Credentials": ["user@company.com / Pass123", "admin@system.local / AdminPass"],
+    "Apps": ["Facebook", "Instagram", "Gmail", "Banking App"],
+    "Files": ["selfie.jpg", "vacation.png", "document.pdf"],
+    "Passwords": ["saved_password_1", "saved_password_2"],
+    "Biometric Access": ["Fingerprint_Phone", "FaceID_Phone"],
+    "Location Data": ["Manila, PH", "Cebu, PH", "Davao, PH"]
+  };
+
+  let currentAsset = null;
+
+  function showAssetModal(assetName) {
+    currentAsset = assets.find(a => a.name === assetName);
+    document.getElementById('assetNameDisplay').innerText = assetName;
+    
+    const fields = assetData[assetName];
+    let html = '<div class="assessment-questions">';
+    html += '<p class="mb-3 text-muted">📝 Enter your REAL information below. The system will calculate your risk based on data sensitivity.</p>';
+    
+    fields.forEach((field, idx) => {
+      const suggestions = suggestionData[field.name] || [`Example ${field.name}`];
+      const sensitivityBadge = field.sensitivity === 'high' ? '🔴 High Risk' : (field.sensitivity === 'medium' ? '🟡 Medium Risk' : '🟢 Low Risk');
+      
+      html += `
+        <div class="data-input-field">
+          <label>📁 ${field.name} <span style="font-size:0.7rem; margin-left:8px;">(${sensitivityBadge})</span></label>
+          <div class="input-group-custom">
+            <input type="text" class="form-control" id="field_${idx}" placeholder="Enter your ${field.name.toLowerCase()} (leave empty if not stored)" value="${currentAsset[`field_${idx}`] || ''}">
+          </div>
+          <div class="suggestions">
+            ${suggestions.map(s => `<button type="button" class="suggest-btn" onclick="fillSuggestion(${idx}, '${s.replace(/'/g, "\\'")}')">${s}</button>`).join('')}
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+    document.getElementById('assessmentQuestions').innerHTML = html;
+    
+    new bootstrap.Modal(document.getElementById('assetModal')).show();
+  }
+
+  window.fillSuggestion = function(fieldIndex, value) {
+    const input = document.getElementById(`field_${fieldIndex}`);
+    if (input) input.value = value;
+  };
+
+  function calculateRiskFromInputs(assetName) {
+    const fields = assetData[assetName];
+    let totalSensitivityScore = 0;
+    let fieldsWithData = 0;
+    
+    for (let i = 0; i < fields.length; i++) {
+      const input = document.getElementById(`field_${i}`);
+      if (input && input.value.trim() !== '') {
+        fieldsWithData++;
+        const sensitivity = fields[i].sensitivity;
+        if (sensitivity === 'high') totalSensitivityScore += 5;
+        else if (sensitivity === 'medium') totalSensitivityScore += 3;
+        else totalSensitivityScore += 1;
+      }
+    }
+    
+    const maxPossibleScore = fields.length * 5;
+    const riskPercentage = totalSensitivityScore / maxPossibleScore;
+    
+    let likelihood = 1;
+    if (riskPercentage <= 0.2) likelihood = 1;
+    else if (riskPercentage <= 0.4) likelihood = 2;
+    else if (riskPercentage <= 0.6) likelihood = 3;
+    else if (riskPercentage <= 0.8) likelihood = 4;
+    else likelihood = 5;
+    
+    let impact = 1;
+    if (riskPercentage <= 0.2) impact = 1;
+    else if (riskPercentage <= 0.4) impact = 2;
+    else if (riskPercentage <= 0.6) impact = 3;
+    else if (riskPercentage <= 0.8) impact = 4;
+    else impact = 5;
+    
+    const riskScore = likelihood * impact;
+    return { likelihood, impact, riskScore, fieldsWithData, totalSensitivityScore };
+  }
+
+  function updateMainDisplay() {
+    const selectedAssetName = document.querySelector('.asset-badge.selected')?.dataset.asset;
+    if (!selectedAssetName) return;
+    const asset = assets.find(a => a.name === selectedAssetName);
+    if (!asset) return;
+    
+    document.getElementById('likelihoodSlider').value = asset.likelihood;
+    document.getElementById('impactSlider').value = asset.impact;
+    document.getElementById('likelihoodValue').innerText = asset.likelihood;
+    document.getElementById('impactValue').innerText = asset.impact;
+    document.getElementById('riskScoreValue').innerText = asset.risk;
+    
+    let level, color, recommendation;
+    if (asset.risk >= 19) { level = 'Critical Risk'; color = '#C62828'; recommendation = '🚨 CRITICAL! You are storing highly sensitive data. Immediate action required!'; }
+    else if (asset.risk >= 13) { level = 'High Risk'; color = '#FF8F00'; recommendation = '⚠️ HIGH RISK! Sensitive data detected. Urgent security measures needed.'; }
+    else if (asset.risk >= 7) { level = 'Medium Risk'; color = '#FFC107'; recommendation = '📋 MEDIUM RISK. Some sensitive data stored. Review protection measures.'; }
+    else if (asset.risk >= 1) { level = 'Low Risk'; color = '#2E7D32'; recommendation = '✅ LOW RISK. Your data appears well protected.'; }
+    else { level = 'No Risk'; color = '#8F8A84'; recommendation = 'No data entered for this asset.'; }
+    
+    document.getElementById('riskLevelBadge').innerText = level;
+    document.getElementById('riskLevelBadge').style.background = color;
+    document.getElementById('recommendationText').innerHTML = recommendation;
+    document.getElementById('priorityAction').innerHTML = `<i class="fas fa-exclamation-triangle me-2"></i>${recommendation}`;
+    
+    if (riskChart) riskChart.destroy();
+    const ctx = document.getElementById('riskGauge').getContext('2d');
+    riskChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: { datasets: [{ data: [asset.risk, 25 - asset.risk], backgroundColor: [color, '#E8E7E5'], borderWidth: 0, circumference: 360, rotation: -90 }] },
+      options: { cutout: '70%', responsive: true, maintainAspectRatio: true, plugins: { tooltip: { enabled: false }, legend: { display: false } }, animation: { duration: 800, easing: 'easeOutQuart' } }
+    });
+    
+    buildMatrixGrid(asset.likelihood, asset.impact);
+    updateSummaryStats();
+  }
+
+  function buildMatrixGrid(currentLikelihood, currentImpact) {
+    const grid = document.getElementById('matrixGrid');
+    grid.innerHTML = '';
+    for (let l = 1; l <= 5; l++) {
+      for (let i = 1; i <= 5; i++) {
+        const risk = l * i;
+        let cellClass = risk <= 6 ? 'cell-low' : (risk <= 12 ? 'cell-medium' : (risk <= 18 ? 'cell-high' : 'cell-critical'));
+        const isActive = (l === currentLikelihood && i === currentImpact);
+        const cell = document.createElement('div');
+        cell.className = `matrix-cell ${cellClass} ${isActive ? 'cell-active' : ''}`;
+        cell.textContent = risk;
+        cell.onclick = () => {
+          const selectedAsset = assets.find(a => a.name === document.querySelector('.asset-badge.selected')?.dataset.asset);
+          if (selectedAsset) {
+            selectedAsset.likelihood = l;
+            selectedAsset.impact = i;
+            selectedAsset.risk = l * i;
+            updateMainDisplay();
+          }
+        };
+        grid.appendChild(cell);
+      }
+    }
+  }
+
+  function updateSummaryStats() {
+    let critical = assets.filter(a => a.risk >= 19).length;
+    let high = assets.filter(a => a.risk >= 13 && a.risk < 19).length;
+    let medium = assets.filter(a => a.risk >= 7 && a.risk < 13).length;
+    let low = assets.filter(a => a.risk >= 1 && a.risk < 7).length;
+    document.getElementById('criticalCount').innerText = critical;
+    document.getElementById('highCount').innerText = high;
+    document.getElementById('mediumCount').innerText = medium;
+    document.getElementById('lowCount').innerText = low;
+  }
+
+  function submitAssessment() {
+    const fields = assetData[currentAsset.name];
+    
+    for (let i = 0; i < fields.length; i++) {
+      const input = document.getElementById(`field_${i}`);
+      if (input) {
+        assets[assets.findIndex(a => a.name === currentAsset.name)][`field_${i}`] = input.value;
+      }
+    }
+    
+    const { likelihood, impact, riskScore, fieldsWithData, totalSensitivityScore } = calculateRiskFromInputs(currentAsset.name);
+    
+    const assetIndex = assets.findIndex(a => a.name === currentAsset.name);
+    assets[assetIndex].likelihood = likelihood;
+    assets[assetIndex].impact = impact;
+    assets[assetIndex].risk = riskScore;
+    
+    document.querySelectorAll('.asset-badge').forEach(b => b.classList.remove('selected'));
+    document.querySelector(`.asset-badge[data-asset="${currentAsset.name}"]`).classList.add('selected');
+    
+    bootstrap.Modal.getInstance(document.getElementById('assetModal')).hide();
+    updateMainDisplay();
+    
+    let riskLevelText = riskScore >= 19 ? 'CRITICAL RISK' : (riskScore >= 13 ? 'HIGH RISK' : (riskScore >= 7 ? 'MEDIUM RISK' : 'LOW RISK'));
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `📊 ${currentAsset.name} assessed! Risk Score: ${riskScore}/25 - ${riskLevelText}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+  function exportReport() {
+    const assetName = document.querySelector('.asset-badge.selected')?.dataset.asset || 'Unknown';
+    const asset = assets.find(a => a.name === assetName);
+    const level = asset.risk >= 19 ? 'Critical Risk' : (asset.risk >= 13 ? 'High Risk' : (asset.risk >= 7 ? 'Medium Risk' : (asset.risk >= 1 ? 'Low Risk' : 'No Risk')));
+    const rec = document.getElementById('recommendationText').innerHTML;
+    const reportContent = `<div style="padding:30px"><h1>Data Risk Assessment Report</h1><hr><h3>Asset: ${assetName}</h3><p><strong>Likelihood:</strong> ${asset.likelihood}/5<br><strong>Impact:</strong> ${asset.impact}/5<br><strong>Risk Score:</strong> ${asset.risk}/25<br><strong>Risk Level:</strong> ${level}</p><h4>Recommendations:</h4><p>${rec}</p><hr><p>Generated by PolicyGuard<br>Date: ${new Date().toLocaleString()}</p></div>`;
+    html2pdf().from(reportContent).set({ margin: 0.5, filename: `Risk_Report_${assetName}.pdf`, html2canvas: { scale: 2 } }).save();
+  }
+
+  function addMatrixStaggerDelay() {
+    const cells = document.querySelectorAll('.matrix-cell');
+    cells.forEach((cell, index) => { cell.style.setProperty('--cell-index', index); });
+  }
+
+  document.querySelectorAll('.asset-badge').forEach(badge => {
+    badge.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const assetName = this.getAttribute('data-asset');
+      showAssetModal(assetName);
+    });
+  });
+  
+  document.getElementById('submitAssessmentBtn').addEventListener('click', submitAssessment);
+  document.getElementById('exportReportBtn').addEventListener('click', (e) => { e.preventDefault(); exportReport(); });
+  
+  updateMainDisplay();
+  document.querySelector('.asset-badge').classList.add('selected');
+  setTimeout(() => addMatrixStaggerDelay(), 100);
+  
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => { if (window.scrollY > 300) scrollBtn.classList.add('visible'); else scrollBtn.classList.remove('visible'); });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
